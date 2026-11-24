@@ -1,10 +1,10 @@
 # GDIM 31 Final: 2D
 ## Devlogs
 ### Milestone 1
-TODO.
+Tell me about a technical problem you encountered while building your final and how you solved it. MAKE SURE you describe your SOLUTION, not just your problem, with technically accurate terms, and cite something specific in your code (like a specific class name or method name). Give details about your PERSONAL thought process and your steps for problem-solving. Be thorough; you will probably need to write 1-2 paragraphs.
 
 ### Milestone 2
-TODO.
+Tell me about a technical problem you encountered while building your final and how you solved it. MAKE SURE you describe your SOLUTION, not just your problem, with technically accurate terms, and cite something specific in your code (like a specific class name or method name). Give details about your PERSONAL thought process and your steps for problem-solving. Be thorough; you will probably need to write 1-2 paragraphs.
 
 ## Playtesting Reports
 ### Milestone 1
