@@ -15,7 +15,7 @@ public class Kickable : MonoBehaviour
     // You don't need to code in this method :)
     private void Start ()
     {
-        _gameController = GameObject.FindFirstObjectByType<GameController>();
+        _gameController = GameObject.FindAnyObjectByType<GameController>();
     }
 
     // ------------------------------------------------------------------------
