@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -27,22 +28,47 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        // left/right
         _rigidbody.linearVelocity = new Vector2(
             Input.GetAxis("Horizontal") * _speed, 
             _rigidbody.linearVelocity.y);
 
+        if(_rigidbody.linearVelocity.x != 0.0f)
+        {
+            _animator.SetBool("walking", true);
+        }
+        else
+        {
+            _animator.SetBool("walking", false);
+        }
+
+
+        //jump
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             _rigidbody.linearVelocity = new Vector2(
                 _rigidbody.linearVelocity.x, 
                 _jump);
+
+            if (_isGrounded == false)
+            {
+                _animator.SetBool("jump", true);
+            }
+            else
+            {
+                _animator.SetBool("jump", false);
+            }
         }
 
+
+        //kick
         if (Input.GetKey(KeyCode.Space))
         {
             Kick();
         }
 
+
+        //character facing
         if (Input.GetAxis("Horizontal") < 0 && !_facingLeft)
         {
             _spriteRenderer.flipX = true;
@@ -60,8 +86,19 @@ public class Player : MonoBehaviour
     private void Kick()
     {
         // Set animation parameter.
+        _animator.SetTrigger("kick");
 
         // Either activate left or right kick based on character facing
+
+        if(_spriteRenderer.flipX == true)
+        {
+            
+        }
+        else
+        {
+
+        }
+
     }
 
     // ------------------------------------------------------------------------
