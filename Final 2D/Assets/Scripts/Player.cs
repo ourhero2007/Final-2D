@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _jump;
 
     private bool _facingLeft;
-    private bool _isGrounded = true;
+    private bool _isGrounded;
 
     // ------------------------------------------------------------------------
     // Add a built-in UNITY METHOD that runs EVERY FRAME.
@@ -27,17 +27,31 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        _rigidbody.linearVelocity = new Vector2(Input.GetAxis("Horizontal") * _speed, _rigidbody.linearVelocity.y);
+        _rigidbody.linearVelocity = new Vector2(
+            Input.GetAxis("Horizontal") * _speed, 
+            _rigidbody.linearVelocity.y);
+
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        {
+            _rigidbody.linearVelocity = new Vector2(
+                _rigidbody.linearVelocity.x, 
+                _jump);
+        }
 
         if (Input.GetKey(KeyCode.Space))
         {
-            _isGrounded = false;
-            _rigidbody.linearVelocity = new Vector2(_rigidbody.linearVelocity.x, _jump);
+            Kick();
         }
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetAxis("Horizontal") < 0 && !_facingLeft)
         {
-            Kick();
+            _spriteRenderer.flipX = true;
+            _facingLeft = true;
+        }
+        else if (Input.GetAxis("Horizontal") > 0 && _facingLeft)
+        {
+            _spriteRenderer.flipX = false;
+            _facingLeft = false;
         }
 
     }
@@ -58,7 +72,15 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.tag.Equals("Ground"))
+        {
+            _isGrounded = true;
+        }
+        else
+        {
+            _isGrounded = false;
 
+        }
 
     }
 
